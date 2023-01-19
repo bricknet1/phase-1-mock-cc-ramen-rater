@@ -58,7 +58,6 @@ newRamen.addEventListener("submit", (e) => {
         "image": e.target.image.value,
         "rating": e.target.rating.value,
         "comment": e.target.comment.value
-        // How could I have made this work 
     }
     // EXTRA ADVANCED DELIVERABLE //
     fetch("http://localhost:3000/ramens", {
@@ -72,6 +71,7 @@ newRamen.addEventListener("submit", (e) => {
         console.log(id);
         renderRamen({...formData, "id": id});
         renderMain({...formData, "id": id});
+        newRamen.reset();
     })
 })
 
@@ -111,7 +111,10 @@ editRamen.addEventListener("submit", (e) => {
         body: JSON.stringify(formData)
     })
     .then(response => response.json())
-    .then(() => ramenUpdater(formData));
+    .then(() => {
+        ramenUpdater(formData);
+        editRamen.reset();
+    });
 })
 
 function ramenUpdater (data){
