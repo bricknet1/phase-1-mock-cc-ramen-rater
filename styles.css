@@ -101,11 +101,22 @@ form h4 {
   background-color: black;
 }
 
-btn {
+#button {
   width: 300px;
-  padding: 0.25rem;
-  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: black solid;
   color: white;
   background-color: red;
   cursor: pointer;
+}
+
+#left-column {
+  float: left;
+  padding: 10px;
+  border-right: black solid;
+}
+
+#right-column {
+  float: right;
+  padding: 10px;
 }

@@ -124,24 +124,26 @@ function ramenUpdater (data){
 
 ////////DELETE/////////
 
-const deleteButton = document.querySelector('btn')
+const deleteButton = document.querySelector('#delete')
 
 deleteButton.addEventListener("click", ()=>{
     // EXTRA ADVANCED DELIVERABLE //
-    fetch("http://localhost:3000/ramens/"+currentRamenId, {
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify()
-    })
-    .then(response => response.json())
-    .then(() => {
-    detailImage.setAttribute("src", "./assets/image-placeholder.jpg")
-    dishNameField.textContent = "DELETED";
-    restaurantNameField.textContent = "Please select another";
-    ratingDisplay.textContent = "";
-    commentDisplay.textContent = "This ramen has been deleted. Please select another from the menu above.";
-    currentRamen.remove()
-    });
+    if (confirm("Are you sure? This can not be undone!")){
+        fetch("http://localhost:3000/ramens/"+currentRamenId, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify()
+        })
+        .then(response => response.json())
+        .then(() => {
+        detailImage.setAttribute("src", "./assets/image-placeholder.jpg")
+        dishNameField.textContent = "DELETED";
+        restaurantNameField.textContent = "Please select another";
+        ratingDisplay.textContent = "";
+        commentDisplay.textContent = "This ramen has been deleted. Please select another from the menu above.";
+        currentRamen.remove()
+        });
+    }
 });
 
 
